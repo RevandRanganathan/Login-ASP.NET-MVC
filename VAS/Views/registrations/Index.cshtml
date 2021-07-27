@@ -1,0 +1,89 @@
+﻿@model IEnumerable<VAS.Models.registration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, htmlAttributes: new { @class = "mybtn" })
+</p>
+<p>
+    @Html.ActionLink("Logout", "Logout","Login", null, htmlAttributes: new { @class = "btn btn-outline-danger" })
+</p>
+@using (Html.BeginForm())
+{
+<p>
+    Search Name:@Html.TextBox("search", ViewBag.FilterValue as String)<input type="submit" value="Find"/>
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }, htmlAttributes: new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        
+    }
+    
+</table>
+<style type="text/css">
+    a.mybtn {
+        background: #3a9fc6;
+        color: #fff;
+        display: inline-block;
+        padding: 6px 12px 6px 12px;
+        text-decoration: none;
+    }
+
+    .ebtn:hover {
+        background-image: none;
+        background-color: #ff6a00;
+    }
+
+    .dtbtn:hover {
+        background-image: none;
+        background-color: #b6ff00;
+    }
+
+    .dbtn:hover {
+        background-image: none;
+        background-color: #ff0000;
+    }
+</style>
